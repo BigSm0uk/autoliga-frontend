@@ -1,1 +1,87 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import "./styleVariables/variables";
+
+body {
+  font-size: $font-weight;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "slnt" 0;
+  color: $white;
+  background-color: $base-backround;
+  margin: 0px;
+  padding: 0;
+}
+p {
+  margin: 0px;
+  padding: 0;
+}
+.btn {
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 17px 24px;
+  max-width: 200px;
+  color: $white;
+  background-color: $indigo;
+  border: none;
+  transition: 0.3s ease;
+  box-shadow: 0 5px 10px rgba(4, 0, 252, 0.2) !important;
+  &:hover {
+    background-color: $purple;
+    transition: 0.3s ease;
+  }
+  &.plus {
+    width: 70px;
+    font-size: 30px;
+    border-radius: 50%;
+    scale: 0.7;
+  }
+  &:disabled {
+    background-color: $gray-dark;
+  }
+}
+.input {
+  text-decoration: none;
+  margin-top: 10px;
+  border: none;
+  height: 40px;
+  width: calc(100% - 30px);
+  padding: 0px 15px;
+  background-color: #2b3c57;
+  font-size: 16px;
+  border-radius: 7px;
+  color: $white;
+  &.big {
+    height: 300px;
+    padding: 10px 15px;
+    overflow: auto;
+    text-decoration: none;
+    outline: 0 !important;
+    text-align: left;
+    max-width: calc(100% - 30px);
+  }
+}
+.dashboard-date {
+  border-radius: 50px;
+  border: none;
+  color: $white;
+  box-sizing: border-box;
+  padding: 0 15px;
+  height: 30px;
+  max-width: 170px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-color: #2b3c57;
+  cursor: pointer;
+}
+.error_message {
+  color: $danger;
+}

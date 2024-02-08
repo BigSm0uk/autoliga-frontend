@@ -1,0 +1,159 @@
+@if (!!client && false ) {
+<form action="" #editclient="ngForm" (ngSubmit)="submitForm()">
+  <div [classList]="'client_details_editor'">
+    <div>
+      ФИО:
+      <input class="input" type="text" [value]="client.fio" />
+    </div>
+    <div>
+      Марка
+      <input class="input" type="text" [value]="client.carBrand" />
+    </div>
+
+    <div>
+      Дата аварии:
+      <input
+        id="exampleInput"
+        class="dashboard-date"
+        type="date"
+        [ngModel]="formatDateForInput(client!.dtpDate) | date : 'yyyy-MM-dd'"
+        required
+      />
+    </div>
+    <div>
+      Страховая компания
+      <input
+        class="input"
+        type="text"
+        [value]="client.insuranceCompany ?? ''"
+      />
+    </div>
+    <div>
+      Дата подачи в СК
+      <input
+        id="exampleInput"
+        class="dashboard-date"
+        type="date"
+        [ngModel]="
+          formatDateForInput(client!.firstPaymentDate!) | date : 'yyyy-MM-dd'
+        "
+        required
+      />
+    </div>
+    <div>
+      Величина первой выплаты:
+      <input class="input" type="text" [value]="client.firstPaymentValue" />
+    </div>
+    <div>
+      Претензия:
+      <input class="input" type="text" [value]="client.claim ?? ''" />
+    </div>
+    <div>
+      Фин. уполномоченный:
+      <input
+        class="input"
+        type="text"
+        [value]="client.financialCommissioner ?? ''"
+      />
+    </div>
+
+    <div>
+      Статус суда:
+      <select class="input" [(ngModel)]="currCourtStatus">
+        @for (status of courtStatus | keyvalue; track $index) {
+        <option [value]="status.value">
+          {{ status.value }}
+        </option>
+        }
+      </select>
+    </div>
+
+    <div>
+      Менеджер:
+      <input class="input" type="text" [value]="client.manager ?? ''" />
+    </div>
+    <button class="btn" type="submit">Сохранить изменения</button>
+  </div>
+</form>
+} @if(!!editClientForm && !!client){
+
+<form [formGroup]="editClientForm" (ngSubmit)="submitForm()">
+  <div [classList]="'client_details_editor'">
+    <input type="text" placeholder="ФИО" formControlName="fio" class="input" />
+    @if (_fio!.invalid && _fio!.touched) {
+    <div class="error_message">Нужно ввести ФИО</div>
+    }
+    <input
+      type="text"
+      placeholder="Марка"
+      formControlName="carsBrand"
+      class="input"
+    />
+    @if (_carsBrand!.invalid && _carsBrand!.touched) {
+    <div class="error_message">Нужно ввести марку машины</div>
+    }
+    <input
+      type="text"
+      placeholder="Номер телефона"
+      formControlName="number"
+      class="input"
+    />
+    @if (_number!.invalid && _number!.touched) {
+    <div class="error_message">Не верно введен номер</div>
+    }
+    <div>
+      Дата ДТП<input type="date" formControlName="dtpDate" class="input" />
+      @if (_dtpDate!.invalid && _dtpDate!.touched) {
+      <div class="error_message">Нужно указать дату ДТП</div>
+      }
+    </div>
+
+    <input
+      type="text"
+      placeholder="Страховая компания"
+      formControlName="insuranceCompany"
+      class="input"
+    />
+    <div>
+      Дата подачи в СК
+      <input type="date" formControlName="skDate" class="input" />
+    </div>
+    <input
+      type="text"
+      placeholder="Величина первой выплаты"
+      formControlName="firstPaymentValue"
+      class="input"
+    />
+    <div>
+      Дата первой выплаты
+      <input type="date" formControlName="firstPaymentDate" class="input" />
+    </div>
+    <div>
+      Дата претензии
+      <input type="date" formControlName="claim" class="input" />
+    </div>
+    <div>
+      Дата обращения к фин. уполномоченному
+      <input
+        type="date"
+        formControlName="financialCommissioner"
+        class="input"
+      />
+    </div>
+    <select formControlName="select" class="input">
+      @for (status of courtStatus | keyvalue; track $index) {
+      <option [ngValue]="status.value">{{ status.value }}</option>
+      }
+    </select>
+    <input
+      type="text"
+      placeholder="Менеджер"
+      formControlName="manager"
+      class="input"
+    />
+    <button type="submit" [disabled]="editClientForm.invalid" class="btn">
+      Сохранить изменения
+    </button>
+  </div>
+</form>
+}

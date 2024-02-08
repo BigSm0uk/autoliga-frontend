@@ -1,0 +1,57 @@
+<div class="client_details">
+  <div>
+    id: <span class="client_details_value">{{ client?.id }}</span>
+  </div>
+  <div>
+    ФИО: <span class="client_details_value"> {{ client?.fio }} </span>
+  </div>
+  <div>
+    Марка: <span class="client_details_value"> {{ client?.carBrand }}</span>
+  </div>
+  <div>
+    Дата аварии:<span class="client_details_value">
+      {{ client?.dtpDate | date : "dd.MM.yyyy" }}</span
+    >
+  </div>
+  <div>
+    Страховая компания:
+    <span class="client_details_value"> {{ client?.insuranceCompany }}</span>
+  </div>
+  <div>
+    Дата подачи в СК:
+    <span class="client_details_value">
+      {{ client?.skDate | date : "dd.MM.yyyy" }}</span
+    >
+  </div>
+  <div>
+    Дата первой вылпаты:
+    <span class="client_details_value">
+      {{ client?.firstPaymentDate | date : "dd.MM.yyyy" }}
+    </span>
+  </div>
+  <div>
+    Первая выплата:
+    <span class="client_details_value"> {{ client?.firstPaymentValue }}</span>
+  </div>
+  <div>
+    Дата претензии:
+    <span class="client_details_value">
+      {{ client?.claim | date : "dd.MM.yyyy" }}</span
+    >
+  </div>
+  <div>
+    Фин. уполномоченный:
+    <span class="client_details_value">
+      {{ client?.financialCommissioner }}</span
+    >
+  </div>
+  <div>
+    Статус суда:
+    <span class="client_details_value"> {{ client?.courtStatus }}</span>
+  </div>
+  <div>
+    Менеджер:<span class="client_details_value"> {{ client?.manager }}</span>
+  </div>
+
+  <div class="editButton" type="image/svg+xml" [routerLink]="['edit']"></div>
+</div>

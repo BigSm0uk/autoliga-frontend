@@ -1,0 +1,245 @@
+@import "../../../styleVariables/variables";
+
+$menuWidth: 300px;
+$navBarHeight: 50px;
+
+$dark: #212121;
+$light: #efefef;
+$color: #b3e5fc;
+
+@mixin btn($left, $top) {
+  position: absolute;
+  z-index: 100;
+  width: 60px;
+  height: 60px;
+  top: $top;
+  left: $left;
+  transition-duration: 0.5s;
+}
+@mixin icon($height, $width) {
+  transition-duration: 0.5s;
+  position: absolute;
+  height: $height;
+  width: $width;
+  top: 30px;
+  background-color: $dark;
+}
+
+@mixin icon-before($height, $width, $top) {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: $width;
+  height: $height;
+  background-color: $dark;
+  content: "";
+  top: $top;
+}
+
+@mixin icon-after($height, $width, $top) {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: $width;
+  height: $height;
+  background-color: $dark;
+  content: "";
+  top: $top;
+}
+
+.display_main {
+  display: flex;
+  flex-direction: row;
+}
+.navigation {
+  display: flex;
+  flex-direction: row;
+}
+.menu {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  gap: 10px;
+  z-index: 99;
+  height: 100%;
+  flex-direction: column;
+  width: $menuWidth;
+  background-color: $base-backround-active;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+  transition: 0.2s ease-in-out;
+  .active {
+    color: $purple;
+    transition: 0.2s ease-in-out;
+    background-color: #2b3c57;
+  }
+}
+.btn1 {
+  display: none;
+}
+
+.menu div:nth-child(1) {
+  height: 3rem;
+}
+.menu_item {
+  padding: 10px 0;
+  width: calc(100% - 10px);
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  &:active {
+    color: $purple;
+  }
+  &:visited {
+    color: white;
+  }
+  &:hover {
+    color: $purple;
+  }
+}
+.menu_header {
+  color: white;
+  height: 50px;
+  text-decoration: none;
+}
+.navigation_bar {
+  height: $navBarHeight;
+  z-index: 98;
+  display: flex;
+  position: fixed;
+  width: calc(100% - $menuWidth);
+  left: $menuWidth;
+  justify-content: end;
+  align-items: center;
+
+  p {
+    padding-right: 50px;
+    font-size: 20px;
+    color: $white;
+    cursor: pointer;
+  }
+}
+.display_content {
+  position: relative;
+  background-color: var(--primary-color);
+  left: $menuWidth;
+  padding: 20px;
+  width: calc(100% - $menuWidth - 40px);
+  height: calc(100% - $navBarHeight);
+  text-wrap: wrap;
+}
+@media only screen and (max-width: $ms) {
+  $menuWidth: 150px;
+  $navBarHeight: 25px;
+  body {
+    font-size: 20px;
+  }
+  .menu {
+    width: $menuWidth;
+    font-size: 16px;
+  }
+  .menu_header {
+    height: 30px;
+  }
+  .navigation_bar {
+    width: calc(100% - $menuWidth);
+    height: $navBarHeight;
+    left: $menuWidth;
+    font-size: 16px;
+    p {
+      font-size: 16px;
+    }
+  }
+  .display_content {
+    padding: 10px;
+    left: $menuWidth;
+    top: $navBarHeight;
+    width: calc(100% - $menuWidth - 10px);
+    height: calc(100% - $navBarHeight);
+    font-size: 20px;
+    span {
+      font-size: 16px;
+    }
+  }
+}
+
+@media only screen and (max-width: $ss) {
+  $menuWidth: 225px;
+  $navBarHeight: 15px;
+  .body {
+    font-size: 16px;
+  }
+  .menu {
+    width: $menuWidth;
+    transform: translate(-150%);
+    font-size: 16px;
+    transition: 0.5s ease-in-out;
+    &.open {
+      transform: translate(0%);
+      transition: 0.5s ease-in-out;
+    }
+  }
+  .menu_header {
+    position: relative;
+    height: 30px;
+  }
+  .btn1 {
+    @include btn(0px, -10px);
+    display: block;
+    .icon-right {
+      @include icon(4px, 20px);
+      left: 30px;
+
+      &:before {
+        @include icon-before(4px, 20px, -10px);
+      }
+
+      &:after {
+        @include icon-after(4px, 20px, 10px);
+      }
+    }
+
+    &.open {
+      left: $menuWidth;
+      .icon-left {
+        transition-duration: 0.5s;
+        background: transparent;
+
+        &:before {
+          transform: rotateZ(45deg) scaleX(1.3) translate(4px, 4px);
+        }
+
+        &:after {
+          transform: rotateZ(-45deg) scaleX(1.3) translate(4px, -4px);
+        }
+      }
+
+      .icon-right {
+        transition-duration: 0.5s;
+        background: transparent;
+        &:before {
+          transform: rotateZ(-20deg) scaleX(1.4) translate(-4px, 4px);
+        }
+
+        &:after {
+          transform: rotateZ(20deg) scaleX(1.4) translate(-4px, -4px);
+        }
+      }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .navigation_bar {
+    font-size: 10px;
+  }
+  .display_content {
+    padding: 5px;
+    left: 15px;
+
+    width: calc(100% - 25px);
+    height: calc(100% - $navBarHeight);
+    font-size: 16px;
+    span {
+      font-size: 12px;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<div class="clients_table">
+  <div class="clients_table_headers">
+    <div class="clients_table_header">ФИО</div>
+    <div class="clients_table_header">Марка машины</div>
+    <div class="clients_table_header">Дата обращения</div>
+  </div>
+  <div class="clients">
+    @if ( clients?.length === 0 ) {
+    <div class="loader"></div>
+    } @for (client of clients; track $index) {
+    <div class="clients_table_client" [routerLink]="['/clients', client.id]">
+      <span>{{ client.fio }}</span>
+      <span>{{ client.carBrand }}</span>
+      <span>{{ client.dtpDate | date : "dd.MM.yyyy" }}</span>
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,20 @@
+$cardWidth: 600px;
+.logo {
+  width: 550px;
+  height: 400px;
+  background-image: url(./svgs/page-not-found.svg);
+}
+.notFoundCard {
+  width: $cardWidth;
+  color: #4a4a4a;
+  position: relative;
+  height: 500px;
+  left: calc(50% - $cardWidth/1.4);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  text-align: center;
+  border-radius: 30px;
+  h3 {
+    padding: 30px;
+    margin: 0;
+  }
+}

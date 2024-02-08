@@ -1,0 +1,31 @@
+<div class="display_main">
+  <div class="navigation">
+    <div
+      [classList]="IsOpenMenu ? 'btn1 open' : 'btn1'"
+      data-menu="1"
+      (click)="OpenCloseMenu()"
+    >
+      <div class="icon-left"></div>
+      <div class="icon-right"></div>
+    </div>
+    <div [classList]="IsOpenMenu ? 'menu open' : 'menu'">
+      <a class="menu_header" [routerLink]="['/hello']" (click)="OpenCloseMenu()"
+        >AutoLiga</a
+      >
+      @for (menuItem of menuValues; track i; let i = $index) {
+      <a
+        [classList]="menuItem.active ? 'menu_item active' : 'menu_item'"
+        [routerLink]="[menuItem.path]"
+        (click)="OpenCloseMenu()"
+        >{{ menuItem.name }}</a
+      >
+      }
+    </div>
+    @if (!this.getAuthState()) {
+    <div class="navigation_bar" [routerLink]="['login']"><p>Войти</p></div>
+    }
+  </div>
+  <div class="display_content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
